@@ -1,0 +1,24 @@
+{
+  "item": {
+    "create": [
+      {
+        "tableName": "tableName",
+        "items": [
+          {
+            "attribute_random_1": true,
+            "attribute_random_2": "2017-06-12T17:38:44.291Z",
+            "attribute_random_3": 19191,
+            "attribute_random_4": {
+              "nested": "up to you"
+            },
+            "attribute_random_5": [
+              {
+                "array.1": "if you need it"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

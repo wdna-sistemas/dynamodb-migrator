@@ -9,12 +9,10 @@ Add a `create` and a `migrate` script in your `package.json` file:
 
 ```json
     {
-        ...
         "scripts": {
             "create": "dynamo-migrator create",
             "migrate": "dynamo-migrator migrate"
         }
-        ...
     }
 ```
 

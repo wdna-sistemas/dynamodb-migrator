@@ -1,7 +1,5 @@
 'use strict';
 
-/* eslint-disable no-console */
-
 const fs = require('fs');
 const path = require('path');
 const AWS = require('aws-sdk');
@@ -21,7 +19,7 @@ const dynamo = new AWS.DynamoDB(dynamoConfig);
 const dynamoDoc = new AWS.DynamoDB.DocumentClient(dynamoConfig);
 const migrationDir = process.env.MIGRATION_DIR || config.MIGRATION_DIR;
 
-const MIGRATION_DIR = path.join(process.cwd(), migrationDir);
+const migrationPath = path.join(process.cwd(), migrationDir);
 
 const migrationTableName = process.env.MIGRATION_TABLE || config.DEFAULT_MIGRATION_TABLE_CONFIG.tableName;
 const migrationAttribute = process.env.MIGRATION_ATTRIBUTE || config.DEFAULT_MIGRATION_TABLE_CONFIG.attributeName;
@@ -129,7 +127,10 @@ const runMigration = (migration) => {
 };
 
 const runMigrations = (migrationsDone) => {
-    const migrationFiles = fs.readdirSync(MIGRATION_DIR);
+    if (!fs.existsSync(migrationPath)) {
+        fs.mkdirSync(migrationPath);
+    }
+    const migrationFiles = fs.readdirSync(migrationPath);
 
     const migrations = migrationFiles
         .filter((file) => {
@@ -155,7 +156,7 @@ const runMigrations = (migrationsDone) => {
     return migrations
         .reduce((previousMigration, file) => {
             const migration = file.replace('.json', '');
-            const fileContent = fs.readFileSync(path.join(MIGRATION_DIR, file), 'utf-8');
+            const fileContent = fs.readFileSync(path.join(migrationPath, file), 'utf-8');
             const migrationObj = JSON.parse(fileContent);
 
             return previousMigration

@@ -1,0 +1,19 @@
+{
+  "table": {
+    "create": [
+      {
+        "tableName": "tableName",
+        "primaryKey": {
+          "hash_key": "S",
+          "partition_key": "S"
+        }
+      },
+      {
+        "tableName": "anotherTable",
+        "primaryKey": {
+          "only_hash_key": "S"
+        }
+      }
+    ]
+  }
+}
