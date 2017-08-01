@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wdna-sistemas/dynamodb-migrations.git"
+    "url": "git+https://github.com/wdna-sistemas/dynamodb-migrator.git"
   },
   "keywords": [
     "dynamodb",
@@ -21,9 +21,9 @@
   "author": "Matheus Vellone",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wdna-sistemas/dynamodb-migrations/issues"
+    "url": "https://github.com/wdna-sistemas/dynamodb-migrator/issues"
   },
-  "homepage": "https://github.com/wdna-sistemas/dynamodb-migrations#readme",
+  "homepage": "https://github.com/wdna-sistemas/dynamodb-migrator#readme",
   "dependencies": {
     "aws-sdk": "^2.93.0",
     "bluebird": "^3.5.0",
