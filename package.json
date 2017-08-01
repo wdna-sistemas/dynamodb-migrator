@@ -1,13 +1,13 @@
 {
-  "name": "dynamo-migration",
+  "name": "dynamo-migrator",
   "version": "1.0.0",
   "description": "Create and migrate DynamoDB data",
   "main": "index.js",
+  "bin": "./bin/run.js",
   "pre-commit": [
     "lint"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --fix src test"
   },
   "repository": {

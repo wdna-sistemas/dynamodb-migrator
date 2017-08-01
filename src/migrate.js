@@ -7,22 +7,24 @@ const path = require('path');
 const AWS = require('aws-sdk');
 const Promise = require('bluebird');
 const question = require('cli-interact').getYesNo;
-const config = require('../config.json');
+const config = require('../defaults.json');
 
 const createTables = require('./table/create');
 const createItems = require('./item/create');
 
-const dynamoConfig = {
-    endpoint: 'http://localhost:4569',
-};
+const dynamoConfig = {};
+if (process.env.DYNAMO_ENDPOINT) {
+    dynamoConfig.endpoint = process.env.DYNAMO_ENDPOINT;
+}
 
 const dynamo = new AWS.DynamoDB(dynamoConfig);
 const dynamoDoc = new AWS.DynamoDB.DocumentClient(dynamoConfig);
+const migrationDir = process.env.MIGRATION_DIR || config.MIGRATION_DIR;
 
-const MIGRATION_DIR = path.join(__dirname, '..', config.MIGRATION_DIR);
+const MIGRATION_DIR = path.join(process.cwd(), migrationDir);
 
-const migrationTableName = config.DEFAULT_MIGRATION_TABLE_CONFIG.tableName;
-const migrationAttribute = config.DEFAULT_MIGRATION_TABLE_CONFIG.attributeName;
+const migrationTableName = process.env.MIGRATION_TABLE || config.DEFAULT_MIGRATION_TABLE_CONFIG.tableName;
+const migrationAttribute = process.env.MIGRATION_ATTRIBUTE || config.DEFAULT_MIGRATION_TABLE_CONFIG.attributeName;
 
 const checkMigrationTable = () => {
     return dynamo.describeTable({
@@ -178,12 +180,14 @@ const runMigrations = (migrationsDone) => {
         }, Promise.resolve());
 };
 
-checkMigrationTable()
-    .then(getMigrationsDone)
-    .then(runMigrations)
-    .then(() => {
-        console.log('Migrations run');
-    })
-    .catch((err) => {
-        console.log('Error while running migration', err.stack);
-    });
+module.exports = () => {
+    checkMigrationTable()
+        .then(getMigrationsDone)
+        .then(runMigrations)
+        .then(() => {
+            console.log('Migrations run');
+        })
+        .catch((err) => {
+            console.log('Error while running migration', err.stack);
+        });
+};

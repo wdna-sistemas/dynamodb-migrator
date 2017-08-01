@@ -1,18 +1,24 @@
 'use strict';
 
-/* eslint-disable no-console */
-
 const fs = require('fs');
 const path = require('path');
-const config = require('../config.json');
+const defaults = require('../defaults.json');
+
+const migrationDir = process.env.MIGRATION_DIR || defaults.MIGRATION_DIR;
 
 const nowISO = () => {
     return (new Date()).toISOString();
 };
 
 const filename = `${nowISO()}.json`;
-const filenamePath = path.join(__dirname, '..', config.MIGRATION_DIR, filename);
+const migrationPath = path.join(process.cwd(), migrationDir);
+const filenamePath = path.join(migrationPath, filename);
 
-fs.writeFileSync(filenamePath, '{}');
+module.exports = () => {
+    if (!fs.existsSync(migrationPath)) {
+        fs.mkdirSync(migrationPath);
+    }
+    fs.writeFileSync(filenamePath, '{\n\n}');
 
-console.log(`Seed file created: ${filenamePath}`);
+    console.log(`Seed file created: ${filenamePath}`);
+};
