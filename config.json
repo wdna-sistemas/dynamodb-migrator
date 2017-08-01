@@ -1,0 +1,7 @@
+{
+  "MIGRATION_DIR": "migrations",
+  "DEFAULT_MIGRATION_TABLE_CONFIG": {
+    "tableName": "_migrations",
+    "attributeName": "migration_date"
+  }
+}

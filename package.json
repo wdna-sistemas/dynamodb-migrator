@@ -1,0 +1,36 @@
+{
+  "name": "dynamo-migration",
+  "version": "1.0.0",
+  "description": "Create and migrate DynamoDB data",
+  "main": "index.js",
+  "pre-commit": [
+    "lint"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --fix src test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wdna-sistemas/dynamodb-migrations.git"
+  },
+  "keywords": [
+    "dynamodb",
+    "migration"
+  ],
+  "author": "Matheus Vellone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wdna-sistemas/dynamodb-migrations/issues"
+  },
+  "homepage": "https://github.com/wdna-sistemas/dynamodb-migrations#readme",
+  "dependencies": {
+    "aws-sdk": "^2.93.0",
+    "bluebird": "^3.5.0",
+    "cli-interact": "^0.1.9",
+    "eslint": "^4.3.0",
+    "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-plugin-import": "^2.7.0",
+    "pre-commit": "^1.2.2"
+  }
+}
