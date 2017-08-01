@@ -108,7 +108,6 @@ const runMigration = (migration) => {
     }
 
     const promises = toRun.map((data) => {
-        console.log(data);
         switch (data.type) {
             case 'dynamo':
                 return Promise.all(data.paramsBatch.map((params) => {
