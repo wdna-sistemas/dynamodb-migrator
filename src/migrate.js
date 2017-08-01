@@ -36,14 +36,18 @@ const checkMigrationTable = () => {
                         ReadCapacityUnits: 1,
                         WriteCapacityUnits: 1,
                     },
-                    AttributeDefinitions: [{
-                        AttributeName: migrationAttribute,
-                        AttributeType: 'S',
-                    }],
-                    KeySchema: [{
-                        AttributeName: config.DEFAULT_MIGRATION_TABLE_CONFIG.attributeName,
-                        KeyType: 'HASH',
-                    }],
+                    AttributeDefinitions: [
+                        {
+                            AttributeName: migrationAttribute,
+                            AttributeType: 'S',
+                        },
+                    ],
+                    KeySchema: [
+                        {
+                            AttributeName: config.DEFAULT_MIGRATION_TABLE_CONFIG.attributeName,
+                            KeyType: 'HASH',
+                        },
+                    ],
                 }).promise();
             }
             return Promise.reject(err);

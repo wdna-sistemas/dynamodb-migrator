@@ -9,9 +9,6 @@ module.exports = {
     },
     "extends": "airbnb-base",
     "rules": {
-        "no-console": [
-            "error"
-        ],
         "no-underscore-dangle": [
             0,
             {
@@ -31,10 +28,10 @@ module.exports = {
         "comma-dangle": [
             "error",
             {
-                "arrays": "always",
-                "objects": "always",
-                "imports": "always",
-                "exports": "always",
+                "arrays": "always-multiline",
+                "objects": "always-multiline",
+                "imports": "always-multiline",
+                "exports": "always-multiline",
                 "functions": "ignore",
             }
         ],
