@@ -1,6 +1,6 @@
 {
   "name": "dynamo-migrator",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Create and migrate DynamoDB data",
   "main": "index.js",
   "bin": "./bin/run.js",
