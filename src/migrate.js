@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const commandLineArgs = require('command-line-args')
+const commandLineArgs = require('command-line-args');
 const AWS = require('aws-sdk');
 const Promise = require('bluebird');
 const question = require('cli-interact').getYesNo;
