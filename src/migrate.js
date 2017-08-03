@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const commandLineArgs = require('command-line-args')
 const AWS = require('aws-sdk');
 const Promise = require('bluebird');
 const question = require('cli-interact').getYesNo;
@@ -9,6 +10,12 @@ const config = require('../defaults.json');
 
 const createTables = require('./table/create');
 const createItems = require('./item/create');
+
+const optionDefinitions = [
+    { name: 'force', alias: 'f', type: Boolean },
+];
+
+const options = commandLineArgs(optionDefinitions);
 
 const dynamoConfig = {};
 if (process.env.DYNAMO_ENDPOINT) {
@@ -143,13 +150,17 @@ const runMigrations = (migrationsDone) => {
         return true;
     }
 
-    console.log(`Found ${migrations.length} missing migrations:`);
-    console.log(`\t${migrations.join('\n\t')}`);
+    if (!options.force) {
+        console.log(`Found ${migrations.length} missing migrations:`);
+        console.log(`\t${migrations.join('\n\t')}`);
 
-    const answer = question('Run migrations');
-    if (!answer) {
-        console.log('Migration process canceled by the user');
-        return false;
+        const answer = question('Run migrations');
+        if (!answer) {
+            console.log('Migration process canceled by the user');
+            return false;
+        }
+    } else {
+        console.log('Migration process run with force flag. Skipping user confirmation');
     }
 
     return migrations

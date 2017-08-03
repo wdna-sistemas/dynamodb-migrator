@@ -1,5 +1,5 @@
-DynamoDB-migrations
--------------------
+DynamoDB-migrator
+-----------------
 
 Create and run DynamoDB migrations easily.
 
@@ -16,7 +16,7 @@ Add a `create` and a `migrate` script in your `package.json` file:
     }
 ```
 
----
+#### Environment vars
 
 `MIGRATION_TABLE`: Table name to keep migrations run. Defaults to `_migrations`.
 
@@ -27,3 +27,7 @@ Add a `create` and a `migrate` script in your `package.json` file:
 `DYNAMO_ENDPOINT`: Can point to a local DynamoDB instance by setting `http://localhost:4569`.
 
 ---
+
+#### Commands flags
+
+The `migrate` command accepts the `-f`/`--force` flag, to skip user confirmation when migrating
