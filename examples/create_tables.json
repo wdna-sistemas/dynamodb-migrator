@@ -9,9 +9,31 @@
         }
       },
       {
-        "tableName": "anotherTable",
-        "primaryKey": {
-          "only_hash_key": "S"
+        "table": {
+          "create": [
+            {
+              "primaryKey": {
+                "hash_key": "S",
+                "partition_key": "S"
+              },
+              "tableName": "tableName"
+            },
+            {
+              "tableName": "anotherTable",
+              "primaryKey": {
+                "only_hash_key": "S"
+              },
+              "indexes": {
+                "indexName": {
+                  "primaryKey": {
+                    "index_partition_key": "S"
+                  }
+                }
+              },
+              "stream": "NEW_AND_OLD_IMAGES",
+              "ttl": "ttl"
+            }
+          ]
         }
       }
     ]
